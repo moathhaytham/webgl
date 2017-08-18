@@ -1,0 +1,64 @@
+in index.html{
+
+	css in head tag
+		#renderCanvas{
+			width: 100%    	    // fullscreen(no scrollbars)
+			height: 100%
+			touch-action: none  // no zooming
+				}
+
+	<body>
+		<canvas id="renderCanvas"></canvas>
+		<script src="(destination)"></script>
+		<script>
+			window.addEventListener('DOMContentLoaded', function(){
+BjsApp.init();
+}); //an event that is triggered when the dom content are fully loaded (meaning tha the canvas is actually there)
+		</script>
+		
+	</body>
+}
+
+
+in .js file{
+	
+	/// <reference path="babylob.2.2.d.ts"/>  to have autocompletion
+
+	var BjsApp =BjsApp || {};
+	BjsApp.intit=function(){
+	
+	//getting canvas
+	var canvas =document.getElementBy Id('rendercanvas');
+
+	//create a babylonjs engine object
+	var engine = new BABYLON.Engine(canvas, true(softening edges of figures));
+
+	// creating a scene
+	var scene = new BABYLON.Scene(engine);
+
+	}
+}
+
+
+video 3:{
+
+	A camera gives eyes through the world you are creating
+	
+	var camera = new BABYLON.FreeCamera('FreeCamera', new BABYLON.Vector3(0 ,2 ,-15)//a 3d vector with its location in the world ,scene)	//type of camera for first person shooter
+
+
+	there are different types of lights
+	// light environment light is one type which comes from above(light that comes from the sky and is reflected on the ground)
+
+	var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0) //the direction of light comming from above, scene)
+
+
+	//creating a sphere
+	var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16 ,2 //number of segments, scene);
+	sphere.position.y=1;	//changing the position(this case individual axis)
+
+
+	engine.runRenerLoop(function(){	//to show your scene on screen
+	scene.render(); //showing something on the screen multiple times(rendering)
+})
+}
