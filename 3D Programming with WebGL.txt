@@ -63,11 +63,89 @@
 
 
 		//creating a sphere
-		var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16 ,2 //number of segments, scene);
+		var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16 //number of segments,2 , scene);
 		sphere.position.y=1;	//changing the position(this case individual axis)
 
 
 		engine.runRenerLoop(function(){	//to show your scene on screen
 		scene.render(); //showing something on the screen multiple times(rendering)
 						})
+	     }
+
+
+
+
+
+--->Interactive Camera{
+
+			camera.attachControl(canvas) //allows interaction with camera (movement)
+
+			var ground = Babylon.Mesh.CreateGround('g1',50,50,2,scene);
+			
+			
+		      }
+
+
+
+
+
+--->Basic Shapes{
+		
+			var box = Babylon.Mesh.CreateBox('box',1,scene);
+			box.posistion = new Babylon.vector3(x,y,z);
+
+
+			var cylinder = Babylon.Mesh.CreateCylinder('cyl',size,upper dia, lower dia, segments(smoothness),scene);
+
+
+			var lines = new Babylon.Mesh.CreateLines('lines', new Babylon.Vector3(x,y,z),new Babylon.Vector3(x,y,z)new Babylon.Vector3(x,y,z) ,scene); //set of line segments
+		}
+
+
+
+
+--->Scaling and Rotating{
+
+			box.scaling.x=2
+			box.scaling= new BABYLON.Vector3(x,y,z);
+
+			box.rotation.x=45
+
+			// listening to screen resize
+			window.addEventListener('resize', function(){
+			engine.resize();
+			});
+			}
+
+
+
+--->Materials{
+		// add color material
+		var spherematerial =new BABYLON.StandardMaterial('spheremat',scene);
+		spherematerial.diffuse= new BABYLON.Color3(r,b,g); //type of color which deals with what will be viewed when exposed to color
+		sphere.material= spherematerial;
+
+		//adding transparency
+		spherematerial.alpha=0.5;
+
+		// adding textures
+		var grass= new BABYLON.StandardMaterial('grass',scene);
+		grass.diffuseTexture= new BABYLON.Texture('path',scene);
+		grass.diffuseTexture.uScale=10;
+		grass.diffuseTexture.vScale=10;
+		ground.material=grass;	
+		// gimp app for textures.... free textures.... texturelib.com
+
+		//light reflection
+		grass.specularColor= new BABYLON.Color3(0,0,0); //no light reflection
+		
+		//intensity of light reflection
+		spherematerial.specularPower=5 // the greater the value the higher the reflection
+
+		// color when no lights(emission)
+		var emissionMaterial = new BABYLON.StandardMaterial('emm',scene);
+		emissionMaterial.emissiveColor= new BABYLON.Color(r,b,g);
+
+
+		//ambient color
 	     }

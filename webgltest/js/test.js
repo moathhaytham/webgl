@@ -15,7 +15,7 @@ Bjsapp.init=function(){
     var ground = new BABYLON.Mesh.CreateGround('g1',100,100,2,scene);
 
     var grass = new BABYLON.StandardMaterial('grass',scene);
-    grass.diffuseTexture= new BABYLON.Texture('assets/grass.jpg',scene);
+    grass.diffuseTexture= new BABYLON.Texture("Assets/grass.png",scene);
     ground.material=grass;
 
     var light = new BABYLON.HemisphericLight('h1', new BABYLON.Vector3(0,1,0),scene);
