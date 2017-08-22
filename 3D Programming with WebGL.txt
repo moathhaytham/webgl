@@ -140,7 +140,7 @@
 		grass.specularColor= new BABYLON.Color3(0,0,0); //no light reflection
 		
 		//intensity of light reflection
-		spherematerial.specularPower=5 // the greater the value the higher the reflection
+		spherematerial.specularPower=5 // the lower the value the higher the reflection
 
 		// color when no lights(emission)
 		var emissionMaterial = new BABYLON.StandardMaterial('emm',scene);
