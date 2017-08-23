@@ -149,3 +149,39 @@
 
 		//ambient color
 	     }
+
+
+
+--->Starting Solar System{
+
+		//camera
+		var cam = new Babylon.ArchRotateCamera(name, beta(angle in the y-z plane), alpha(angle in the x-z plane) ,radius,target or center new (BABYLON.Vector.Zero()),scene);
+		camera.attachControl(canvas);
+
+						}
+
+
+
+--->Adding Planet{
+		
+		//Hemisphericlight properties
+		var light = new BABYLON.HemisphericLight('h1',new BABYLON.Vector3(0,1,0);
+		light.intensity=0.5 	//change the intensity of the light
+		light.groundColor = new BABYLON.Color3(0,0,1)		//property where you change light comming from the ground (property of Hemispheric light)
+
+		//changing the background or scene light
+		scene.clearColor= new BABYLON.Color3(0,0,0);
+				}
+
+
+
+
+--->Shining Star{
+
+		//adding an emissive texture
+		sunmaterial.emissiveTexure= new BABYLON.Texture('path', scene);
+
+		
+		//light that iluminates what is around it is point light
+		
+				}

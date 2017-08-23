@@ -3,26 +3,36 @@
 var Bjsapp= Bjsapp ||{};
 
 Bjsapp.init=function () {
-    var canvas= document.getElementById('renderCanvas');
+    var canvas = document.getElementById('renderCanvas');
 
-    var engine =new BABYLON.Engine(canvas,true);
+    var engine = new BABYLON.Engine(canvas,true);
 
-    var scene =new BABYLON.Scene(engine);
+    var scene = new BABYLON.Scene(engine);
+    scene.clearColor= new BABYLON.Color3(0,0,0);
 
-    //var sphere = new BABYLON.Mesh.CreateSphere('sphere1',16,2,scene);
-    var box = new BABYLON.Mesh.CreateBox('box',50,scene);
-	
-	var light = new BABYLON.HemisphericLight('light1',new BABYLON.Vector3(0,1,0),scene);
+    var light = new BABYLON.HemisphericLight('light',new BABYLON.Vector3(0,1,0),scene);
+    light.intensity=0.5
+    light.groundColor= new BABYLON.Color3(0,0,0);
 
-    //var camera = new BABYLON.FreeCamera('FreeCamera',new BABYLON.Vector3(0,2,-15),scene);
-    var camera = new BABYLON.ArcRotateCamera('rotatecamera',0,1.2,5,box,scene);
-	camera.attachControl(canvas);
-    
+    var camera = new BABYLON.ArcRotateCamera('cam1',0,0,15,new BABYLON.Vector3.Zero(),scene);
+    camera.attachControl(canvas);
 
+    var sun = new BABYLON.Mesh.CreateSphere('s1',16,4,scene);
 
+    var planet1= BABYLON.Mesh.CreateSphere('planet1',16,1,scene);
+    planet1.position.x=4;
+
+    var planet1material = new BABYLON.StandardMaterial('material',scene);
+    planet1material.diffuseTexture= new BABYLON.Texture('Assets/sand.jpg',scene);
+    planet1material.specularColor=new BABYLON.Color3(0,0,0);
+    planet1.material=planet1material;
 
     engine.runRenderLoop(function () {
         scene.render();
+    });
+
+    window.addEventListener('resize', function () {
+        engine.resize();
     })
 
 
