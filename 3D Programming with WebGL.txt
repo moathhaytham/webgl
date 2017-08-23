@@ -183,5 +183,27 @@
 
 		
 		//light that iluminates what is around it is point light
-		
+		var light = new BABYLON.PointLight('name', //position new Babylon.Vector3.Zero(), scene  );
 				}
+
+
+
+
+
+--->Adding a Skybox{
+
+		//to add a skybox you need six images either different or the same
+		//to create the skybox					
+		var skybox = new BABYLON.Mesh.CreateBox('name',size , scene);
+		var skymaterial = new BABYLON.StandardMaterial('name',scene);
+		skymaterial.backFaceCulling= false  	//dont render what we cant see (meaning that we dont need to render the back faces of the box which w dont want to see)
+		skybox.infinteDistance= true;			//giving the box infinte distance so that it can move with the camera
+		skybox.material= skymaterial;
+
+		//limiting the camera within a radius not to leave the cube
+		camera.upperLimitRadius= so value you specify
+
+		//adding the texture to your skybox
+		skymaterial.reflectionTexture= new BABYLON.CubeTexture('name by simply writing the common name between the six pics', scene);
+		skymaterial.reflectionTexture.coordinatesMode=  BABYLON.Texture.SKYBOX_MODE; 		//just telling that this a skybox mode
+					}
