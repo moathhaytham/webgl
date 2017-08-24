@@ -207,3 +207,24 @@
 		skymaterial.reflectionTexture= new BABYLON.CubeTexture('name by simply writing the common name between the six pics', scene);
 		skymaterial.reflectionTexture.coordinatesMode=  BABYLON.Texture.SKYBOX_MODE; 		//just telling that this a skybox mode
 					}
+
+
+
+
+--->Orbiting Planets{
+
+		//object for the planet
+		planet1.orbit {
+				radius: planet1.position.x,
+				speed:0.01
+				angle:0
+		}
+
+
+		// a method for scene that allows you to animate anything (called multiple times per second)
+		scene.beforeRender= function(){
+				planet1.position.x= planet1.orbit.radius *Math.sin(planet1.orbit.angle);
+				planet1.position.z= planet1.orbit.radius *Math.cos(planet1.orbit.angle);
+				planet1.orbit.angle+= planet1.orbit.speed;  
+										};
+					}

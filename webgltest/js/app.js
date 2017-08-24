@@ -29,13 +29,40 @@ Bjsapp.init=function () {
     var light= new BABYLON.PointLight('sunlight', new BABYLON.Vector3.Zero(),scene);
 
 
-    var planet1= BABYLON.Mesh.CreateSphere('planet1',16,1,scene);
+    /*var planet1= BABYLON.Mesh.CreateSphere('planet1',16,1,scene);
     planet1.position.x=4;
+    planet1.orbit={
+        radius: 4,
+        speed: 0.01,
+        angle:0
+
+    };*/
+
 
     var planet1material = new BABYLON.StandardMaterial('material',scene);
     planet1material.diffuseTexture= new BABYLON.Texture('Assets/sand.jpg',scene);
     planet1material.specularColor=new BABYLON.Color3(0,0,0);
-    planet1.material=planet1material;
+
+
+    var planetarr=[];
+    var i=0;
+    for(;i<5;i++) {
+        planetarr[i] = new BABYLON.Mesh.CreateSphere('planet', 16, 1, scene);
+        planetarr[i].position.x = Math.floor((Math.random(4) *20 ) + 1);
+        planetarr[i].material=planet1material;
+        planetarr[i].orbit = {
+            radius: 4,
+            speed: Math.random(),
+            angle: 0
+        };
+
+    }
+
+
+
+
+
+
 
     var skybox= new BABYLON.Mesh.CreateBox('skybox',1000,scene);
     var skyboxMaterial= new BABYLON.StandardMaterial('skm',scene);
@@ -52,6 +79,20 @@ Bjsapp.init=function () {
 
     skyboxMaterial.reflectionTexture= new BABYLON.CubeTexture('Assets/skybox',scene);
     skyboxMaterial.reflectionTexture.coordinatesMode=  BABYLON.Texture.SKYBOX_MODE;
+
+    scene.beforeRender=function(){
+
+        /*planet1.position.x= planet1.orbit.radius* Math.sin(planet1.orbit.angle);
+        planet1.position.z= planet1.orbit.radius *Math.cos(planet1.orbit.angle);
+        planet1.orbit.angle+= planet1.orbit.speed;*/
+
+        for(var i=0;i<planetarr.length;i++){
+        planetarr[i].position.x=planetarr[i].orbit.radius * Math.sin(planetarr[i].orbit.angle);
+        planetarr[i].position.z=planetarr[i].orbit.radius * Math.cos(planetarr[i].orbit.angle);
+        planetarr[i].orbit.angle+=planetarr[i].orbit.speed;}
+    };
+
+
 
 
 
