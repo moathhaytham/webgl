@@ -16,6 +16,7 @@ Bjsapp.init=function () {
 
     var camera = new BABYLON.ArcRotateCamera('cam1',0,0,15,new BABYLON.Vector3.Zero(),scene);
     camera.attachControl(canvas);
+    camera.upperRadiusLimit=50;
 
     var sun = new BABYLON.Mesh.CreateSphere('s1',16,4,scene);
 
@@ -35,6 +36,26 @@ Bjsapp.init=function () {
     planet1material.diffuseTexture= new BABYLON.Texture('Assets/sand.jpg',scene);
     planet1material.specularColor=new BABYLON.Color3(0,0,0);
     planet1.material=planet1material;
+
+    var skybox= new BABYLON.Mesh.CreateBox('skybox',1000,scene);
+    var skyboxMaterial= new BABYLON.StandardMaterial('skm',scene);
+
+    skyboxMaterial.backFaceCulling= false;
+
+    skybox.infiniteDistance=true;
+
+    skybox.material=skyboxMaterial;
+
+    skyboxMaterial.diffuseColor= new BABYLON.Color3(0,0,0);
+    skyboxMaterial.specularColor= new BABYLON.Color3(0,0,0);
+
+
+    skyboxMaterial.reflectionTexture= new BABYLON.CubeTexture('Assets/skybox',scene);
+    skyboxMaterial.reflectionTexture.coordinatesMode=  BABYLON.Texture.SKYBOX_MODE;
+
+
+
+
 
     engine.runRenderLoop(function () {
         scene.render();
